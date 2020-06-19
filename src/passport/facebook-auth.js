@@ -15,7 +15,7 @@ passport.use(new FacebookStrategy({
     clientSecret: process.env.CLIENT_SECRET_FACEBOOK,
     callbackURL: process.env.CALLBACK_URL,
 }, async (accessToken, refreshToken, profile, done) => {
-
+console.log(profile)
     await userModel.findOne({ "facebook.provider_id": profile.id }, async (err, user) => {
         if (err) throw (err);
         if (!err && user != null) {

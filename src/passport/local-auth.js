@@ -23,7 +23,9 @@ passport.use('local-login', new LocalStrategy({
     if (!user) {
          done(null, false, { message: 'Usted tiene que autenticarse' })
     }
-    if (await UserModel.comparePassword(password, user)) {       
+    if (await UserModel.comparePassword(password, user)) {  
+        user.local.online = true
+        await user.save()   
          done(null, user);
     } else {
          done(null, false, { message: 'Las contraseña no son iguales' })
@@ -35,15 +37,18 @@ passport.use('local-registro', new LocalStrategy({
     passwordField: 'password',
     passReqToCallBack: true
 
-}, async (email, password, done) => {
+}, async (email,password,done) => {
+    
     const user = await User.findOne({ "local.email" : email });
     if (user) {
        
         return done(null, false, { message: 'Existe un usuario' })
     } else {
+        const usuario = email.split('@')[0] 
         const newUser = new User();
         newUser.local.email = email;
         newUser.local.password = newUser.encryptPassword(password);
+        newUser.local.usuario = usuario;
         await newUser.save();
         return done(null, newUser);
     }

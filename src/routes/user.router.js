@@ -15,16 +15,20 @@ const { routerLoginGet,
 
 //Autenticar  Local
 router.post('/iniciar', passport.authenticate('local-login', {
-    successRedirect: '/perfil',
+    //successRedirect: '/perfil',
     failureRedirect: '/iniciar',
     passReqToCallback: true
-}))
+}), (req,res) => {
+    res.json(req.user)
+})
 
 router.post('/registro', passport.authenticate('local-registro', {
-    successRedirect: '/perfil',
+    //successRedirect: '/perfil',
     failureRedirect: '/registro',
     passReqToCallback: true
-}))
+}),(req,res) => {
+    res.json(req.user)
+})
 
 //Autenticar Facebook
 

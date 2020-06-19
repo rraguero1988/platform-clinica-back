@@ -6,7 +6,9 @@ const userSchema = new Schema({
         email: { type: String, unique: true,  lowercase: true },
         password: { type: String  },
         nombre: { type: String },
-        apellido: { type: String }
+        usuario:{type:String},
+        apellido: { type: String },
+        online: {type:Boolean, default:false}
     },
     facebook:{
         name: String,
