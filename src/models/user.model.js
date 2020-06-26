@@ -8,7 +8,8 @@ const userSchema = new Schema({
         nombre: { type: String },
         usuario:{type:String},
         apellido: { type: String },
-        online: {type:Boolean, default:false}
+        online: {type:Boolean, default:false},
+        rol:{type:String,default:'cliente'}
     },
     facebook:{
         name: String,
@@ -21,7 +22,8 @@ const userSchema = new Schema({
         provider: String,
         provider_id: {type: String, unique: true},
         createdAt: {type: Date, default: Date.now}
-    }
+    },
+    socket:{type:String,default:''}
    
 })
 userSchema.methods.encryptPassword = (password) => {

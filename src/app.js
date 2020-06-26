@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const cors = require('cors');
+import cors from 'cors'
 const passport = require('passport');
 const session = require('express-session');
 const SocketIO = require('socket.io')
@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express();
 const server = require('http').Server(app)
 const io = SocketIO(server,{origins: '*:*'})
-require('../Socket')(io)
+require('./Socket')(io)
 
 //Configuraciones
 require('./database');
@@ -42,6 +42,7 @@ app.use(passport.session());
 //Rutas
 app.use(require('../src/routes/index.router'));
 app.use(require('../src/routes/user.router'));
+app.use(require('../src/routes/mensaje.router'));
 
 //configuraciones
 app.set('port', process.env.PORT || 3000);
