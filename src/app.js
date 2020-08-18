@@ -3,14 +3,14 @@ const morgan = require('morgan');
 import cors from 'cors'
 const passport = require('passport');
 const session = require('express-session');
-const SocketIO = require('socket.io')
+//const SocketIO = require('socket.io')
 require('dotenv').config();
 
 
 const app = express();
-const server = require('http').Server(app)
+/*const server = require('http').Server(app)
 const io = SocketIO(server,{origins: '*:*'})
-require('./Socket')(io)
+require('./Socket')(io)*/
 
 //Configuraciones
 require('./database');
@@ -47,6 +47,6 @@ app.use(require('../src/routes/mensaje.router'));
 //configuraciones
 app.set('port', process.env.PORT || 3000);
 
-server.listen(app.get('port'), () => {
+app.listen(app.get('port'), () => {
     console.log('Servidor corriendo', app.get('port'));
 })

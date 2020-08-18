@@ -14,13 +14,13 @@ const userSchema = new Schema({
     facebook:{
         name: String,
         provider: String,
-        provider_id: {type: String, unique: true},
+        //provider_id: {type: String, unique: true},
         createdAt: {type: Date, default: Date.now}
     },
     google:{
         name: String,
         provider: String,
-        provider_id: {type: String, unique: true},
+        //provider_id: {type: String, unique: true},
         createdAt: {type: Date, default: Date.now}
     },
     socket:{type:String,default:''}
